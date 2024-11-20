@@ -56,8 +56,20 @@ select distinct city, country from customers; -- get unique city country combina
 
 select count(*) from (select distinct city, country from customers);
 
-
+-- WHERE CLAUSE
 select * from tracks where name = 'Tears Dry On Their Own';
 select albumid, name from tracks where albumid in (2, 3, 10);
 select name from tracks where name like 'z%';
 select albumid, name from tracks where albumid between 10 and 20;
+
+
+-- AND OPERATOR 
+select 1 and null; -- null (commutative)
+select 0 and null; -- false (commutative)
+select null and null; -- null
+
+-- OR OPERATOR
+select 1 or null; -- true (commutative)
+select 0 or null; -- null (commutative)
+select null or null; -- null
+
