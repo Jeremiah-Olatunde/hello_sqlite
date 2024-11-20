@@ -55,3 +55,9 @@ select distinct city, country from customers; -- get unique city country combina
 -- perhaps using a subquery
 
 select count(*) from (select distinct city, country from customers);
+
+
+select * from tracks where name = 'Tears Dry On Their Own';
+select albumid, name from tracks where albumid in (2, 3, 10);
+select name from tracks where name like 'z%';
+select albumid, name from tracks where albumid between 10 and 20;
