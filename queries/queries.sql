@@ -14,7 +14,7 @@ select * from employees;
 -- ORDER BY CLAUSE
 
 -- NOTE:  ASC is default
--- select name, milliseconds from tracks order by milliseconds; 
+select name, milliseconds from tracks order by milliseconds limit 10;
 
 -- order by column not in select list
 -- result is sorted first before the limit is applied
@@ -34,8 +34,24 @@ select 'hello' = 'hello';
 select null = null;
 
 -- by default null is considered less than all other values
-select name, composer from tracks order by composer;
+select name, composer from tracks order by composer limit 10;
 
 -- cutomize this behaviour with the nulls first or nulls last option
-select name, composer from tracks order by composer nulls first;
-select name, composer from tracks order by composer nulls last;
+select name, composer from tracks order by composer nulls first limit 10;
+select name, composer from tracks order by composer nulls last limit 10;
+
+-- SELECT DISTINCT
+-- null is not comparable to itself yet when using select distinct null is considered a duplicate
+
+select city from customers; -- returns 59 rows containing duplicate cities
+select distinct city from customers; -- returns 53 rows
+
+select count(distinct city) from customers; -- 53
+select distinct(count city) from customers; -- 59
+
+select distinct city, country from customers; -- get unique city country combinations
+
+-- how to count unique combinations? passing into count() function does not work
+-- perhaps using a subquery
+
+select count(*) from (select distinct city, country from customers);
