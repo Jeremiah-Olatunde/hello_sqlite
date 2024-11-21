@@ -81,3 +81,19 @@ select name, milliseconds from tracks order by milliseconds desc limit 1 offset 
 -- select the third shortest track
 select name, milliseconds from tracks order by milliseconds asc limit 1 offset 2;
 
+-- BETWEEN OPERATOR
+select 2 * 2 as result where result between 2 and 6; -- 4
+select 10 + 10 as result where result between 5 and 10; -- no rows returned
+select name, birthdate from employees where birthdate between datetime('1970-01-01') and datetime('now');
+select albumid, name from tracks where albumid between 1 and 3; -- inclusive range
+select albumid, name from tracks where albumid not between 10 and 347;
+
+-- DATE & TIME
+select date('now');
+select time('now');
+select datetime('now');
+select unixepoch('now');
+select datetime(unixepoch('2001-07-27'), 'unixepoch');
+select datetime('2001-07-27') < datetime('2005-09-18');
+select timediff('now', '2001-07-27'); -- i'm getting old
+select datetime('2001-07-27', timediff('now', '2001-07-27'));
