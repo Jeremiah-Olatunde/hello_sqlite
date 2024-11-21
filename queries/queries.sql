@@ -73,3 +73,11 @@ select 1 or null; -- true (commutative)
 select 0 or null; -- null (commutative)
 select null or null; -- null
 
+-- OFFSET & LIMIT
+
+-- select the second longest track
+select name, milliseconds from tracks order by milliseconds desc limit 1 offset 1;
+
+-- select the third shortest track
+select name, milliseconds from tracks order by milliseconds asc limit 1 offset 2;
+
