@@ -111,3 +111,26 @@ select count(*), mediatypeid from tracks group by mediatypeid;
 -- does this mean that select operator returns results in the form of (row, row, row)
 -- can probably solved with a join as well
 select trackid, name from tracks where albumid in (select albumid from albums where artistid = 14);
+
+-- LIKE OPERATOR
+-- % zero or more characters
+-- _ single character
+
+-- NOTE: case sensitive by default for characters not in ascii range
+select 'A' like 'a'; -- true, case insensitive by default
+pragma case_sensitive_like = true;
+select 'A' like 'a'; -- false, case insensitive by default
+pragma case_sensitive_like = false;
+select name from artists where name like '____'; --  get all four character names
+select name from artists where name like 'c%'; -- get all names starting with C or c
+select name from artists where name like '%\%%' escape '\'; -- find any names with % sign
+
+-- GLOB OPERATOR
+select name from tracks where name glob '????';
+select name from tracks where name glob '[0-9][0-9][0-9][0-9]';
+select name from tracks where name glob '*[0-9][0-9][0-9][0-9]*';
+select name from tracks where name glob '*[^0123456789]*' limit 10;
+
+-- IS NULL & IS NOT NULL
+select count(*) from customers where fax is not null;
+select count(*) from customers where fax is null;
