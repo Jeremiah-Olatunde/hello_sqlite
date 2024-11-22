@@ -97,3 +97,17 @@ select datetime(unixepoch('2001-07-27'), 'unixepoch');
 select datetime('2001-07-27') < datetime('2005-09-18');
 select timediff('now', '2001-07-27'); -- i'm getting old
 select datetime('2001-07-27', timediff('now', '2001-07-27'));
+
+
+-- IN OPERATOR
+select name, albumid from tracks where albumid in (1, 2);
+select name, albumid from tracks where albumid = 1 or albumid = 2;
+select name, mediatypeid from tracks where mediatypeid in (4, 5); 
+
+select count(*), mediatypeid from tracks group by mediatypeid;
+
+-- get all the tracks belonging to the artist with the id 90
+-- rows returned by select can be operands to the in operator
+-- does this mean that select operator returns results in the form of (row, row, row)
+-- can probably solved with a join as well
+select trackid, name from tracks where albumid in (select albumid from albums where artistid = 14);
